@@ -8,5 +8,5 @@ export class CreateCompanyDto {
     country: string;
 
     @ApiProperty()
-    cant_employees: string;
+    cant_employees: number;
 }

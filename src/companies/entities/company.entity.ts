@@ -12,7 +12,7 @@ export class Company {
     name: string;
 
     @Column()
-    cant_employees: string;
+    cant_employees: number;
 
     @Column()
     country: string;

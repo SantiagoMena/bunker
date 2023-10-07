@@ -11,7 +11,7 @@ export class CompaniesService {
       @InjectRepository(Company)
       private companyRepository: Repository<Company>,
   ) {}
-  
+
   create(createCompanyDto: CreateCompanyDto) {
     const newCompany = this.companyRepository.create(createCompanyDto);
     return this.companyRepository.save(newCompany);
