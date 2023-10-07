@@ -4,6 +4,7 @@ import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
 import { Repository } from 'typeorm';
 import {Company} from "./entities/company.entity";
+import {Employee} from "../employees/entities/employee.entity";
 
 @Injectable()
 export class CompaniesService {
@@ -18,11 +19,11 @@ export class CompaniesService {
   }
 
   findAll() {
-    return this.companyRepository.find();
+    return this.companyRepository.find({relations: ['employees']});
   }
 
   findOne(id: number) {
-    return this.companyRepository.findOneBy({ id });
+    return this.companyRepository.findOne({where: {id}, relations: ['employees']});
   }
 
   update(id: number, updateCompanyDto: UpdateCompanyDto) {

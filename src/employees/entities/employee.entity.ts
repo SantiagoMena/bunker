@@ -1,9 +1,9 @@
 
-import {Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, OneToOne, JoinColumn} from 'typeorm';
 import {Company} from "../../companies/entities/company.entity";
 
 
-@Entity()
+@Entity({ name: 'employees' })
 export class Employee {
     @PrimaryGeneratedColumn()
     id: number;
@@ -23,6 +23,10 @@ export class Employee {
     @Column()
     active: boolean;
 
-    @ManyToOne(type => Company, company => company)
+    @Column()
+    company_id?: number;
+
+    @ManyToOne(() => Company, company => company.employees)
+    @JoinColumn({ name: 'company_id' })
     company: Company;
 }
